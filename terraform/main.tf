@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.backend_region
+  region = "ap-southeast-2"
 }
 
 provider "confluent" {

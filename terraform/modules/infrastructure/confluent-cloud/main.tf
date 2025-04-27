@@ -9,4 +9,7 @@ terraform {
 
 resource "confluent_kafka_cluster" "this" {
   display_name = "${var.environment}-cluster"
+  cloud = "AWS"
+  region = "ap-southeast-2"
+  basic {}
 }
