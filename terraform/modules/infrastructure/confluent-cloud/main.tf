@@ -23,8 +23,8 @@ resource "confluent_kafka_cluster" "this" {
 }
 
 resource "confluent_service_account" "this" {
-  display_name = "cloud-cluster-admin"
-  description  = "CloudClusterAdmin"
+  display_name = "${var.environment}-cloud-cluster-admin"
+  description  = "${var.environment}-CloudClusterAdmin"
 }
 
 resource "confluent_role_binding" "this" {
@@ -34,8 +34,8 @@ resource "confluent_role_binding" "this" {
 }
 
 resource "confluent_api_key" "this" {
-  display_name = "cloud-cluster-admin-api-key"
-  description  = "CloudClusterAdmin API Key"
+  display_name = "${var.environment}-cloud-cluster-admin-api-key"
+  description  = "${var.environment}-CloudClusterAdmin API Key"
   owner {
     id          = confluent_service_account.this.id
     api_version = confluent_service_account.this.api_version
@@ -69,6 +69,18 @@ resource "confluent_kafka_topic" "topic0" {
     id = confluent_kafka_cluster.this.id
   }
   topic_name    = "topic0"
+  rest_endpoint = confluent_kafka_cluster.this.rest_endpoint
+  credentials {
+    key    = confluent_api_key.this.id
+    secret = confluent_api_key.this.secret
+  }
+}
+
+resource "confluent_kafka_topic" "topic1" {
+  kafka_cluster {
+    id = confluent_kafka_cluster.this.id
+  }
+  topic_name    = "topic1"
   rest_endpoint = confluent_kafka_cluster.this.rest_endpoint
   credentials {
     key    = confluent_api_key.this.id
