@@ -29,7 +29,7 @@ resource "confluent_service_account" "this" {
 
 resource "confluent_role_binding" "this" {
   principal   = "User:${confluent_service_account.this.id}"
-  role_name   = "${var.environment}-CloudClusterAdmin"
+  role_name   = "CloudClusterAdmin"
   crn_pattern = confluent_kafka_cluster.this.rbac_crn
 }
 
