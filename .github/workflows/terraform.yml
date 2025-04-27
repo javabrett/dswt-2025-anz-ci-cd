@@ -6,6 +6,12 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Which environment to destroy (e.g. main, PR-123)'
+        required: true
+        default: 'main'
 
 jobs:
   terraform:
