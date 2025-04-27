@@ -3,6 +3,6 @@ provider "aws" {
 }
 
 module "confluent_cloud" {
-  source      = "modules/infrastructure/confluent-cloud"
+  source      = "./modules/infrastructure/confluent-cloud"
   environment = var.environment
 }
