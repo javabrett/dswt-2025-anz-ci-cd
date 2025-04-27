@@ -23,5 +23,6 @@ resource "confluent_kafka_cluster" "this" {
 }
 
 resource "confluent_kafka_topic" "topic0" {
-  topic_name = "topic0"
+  topic_name    = "topic0"
+  rest_endpoint = confluent_kafka_cluster.this.rest_endpoint
 }
