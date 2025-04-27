@@ -23,19 +23,19 @@ resource "confluent_kafka_cluster" "this" {
 }
 
 resource "confluent_service_account" "this" {
-  display_name = "cloud-cluster-admin"
-  description  = "CloudClusterAdmin"
+  display_name = "${var.environment}-cloud-cluster-admin"
+  description  = "${var.environment}-CloudClusterAdmin"
 }
 
 resource "confluent_role_binding" "this" {
   principal   = "User:${confluent_service_account.this.id}"
-  role_name   = "CloudClusterAdmin"
+  role_name   = "${var.environment}-CloudClusterAdmin"
   crn_pattern = confluent_kafka_cluster.this.rbac_crn
 }
 
 resource "confluent_api_key" "this" {
-  display_name = "cloud-cluster-admin-api-key"
-  description  = "CloudClusterAdmin API Key"
+  display_name = "${var.environment}-cloud-cluster-admin-api-key"
+  description  = "${var.environment}-CloudClusterAdmin API Key"
   owner {
     id          = confluent_service_account.this.id
     api_version = confluent_service_account.this.api_version
