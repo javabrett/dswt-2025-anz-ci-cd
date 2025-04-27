@@ -23,6 +23,9 @@ resource "confluent_kafka_cluster" "this" {
 }
 
 resource "confluent_kafka_topic" "topic0" {
+  kafka_cluster {
+    id = confluent_kafka_cluster.this.id
+  }
   topic_name    = "topic0"
   rest_endpoint = confluent_kafka_cluster.this.rest_endpoint
 }
