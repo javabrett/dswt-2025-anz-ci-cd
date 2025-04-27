@@ -36,7 +36,7 @@ jobs:
           if [ "${{ github.event_name }}" = "push" ]; then
             cp terraform/main.tfvars terraform/auto.tfvars
           else
-            echo 'environment = "PR-'${{ github.event.pull_request.number }}'" > terraform/auto.tfvars
+            echo "environment = \"PR-${{ github.event.pull_request.number }}\"" > terraform/auto.tfvars
           fi
 
       - name: Terraform Init
