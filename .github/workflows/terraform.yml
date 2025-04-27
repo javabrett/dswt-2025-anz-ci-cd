@@ -11,6 +11,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     environment: ${{ github.event_name == 'push' && 'main' || format('PR-{0}', github.event.pull_request.number) }}
+    env:
+      TF_VAR_confluent_cloud_api_key: ${{ secrets.CONFLUENT_CLOUD_API_KEY }}
+      TF_VAR_confluent_cloud_api_secret: ${{ secrets.CONFLUENT_CLOUD_API_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
