@@ -19,6 +19,7 @@ resource "confluent_schema" "topic1" {
   subject_name = "${confluent_kafka_topic.topic1.topic_name}-value"
   format       = "AVRO"
   schema       = file("./modules/infrastructure/confluent-cloud/schemas/avro/topic1.avsc")
+  skip_validation_during_plan = true
   credentials {
     key    = confluent_api_key.sr.id
     secret = confluent_api_key.sr.secret
