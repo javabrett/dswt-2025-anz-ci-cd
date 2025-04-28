@@ -97,7 +97,7 @@ resource "confluent_api_key" "sr" {
   }
 
   depends_on = [
-    confluent_role_binding.this
+    confluent_role_binding.data-steward
   ]
 }
 
