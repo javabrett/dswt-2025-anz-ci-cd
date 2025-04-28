@@ -14,11 +14,6 @@
     {
       "name": "customer_id",
       "type": "string"
-    },
-    {
-      "name": "customer_id2",
-      "type": ["null", "string"],
-      "default": null
     }
   ]
 }
