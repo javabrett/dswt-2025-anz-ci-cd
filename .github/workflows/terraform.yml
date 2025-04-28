@@ -96,7 +96,7 @@ jobs:
         run: |
           terraform init \
             -backend-config="bucket=${{ secrets.TF_STATE_BUCKET }}" \
-            -backend-config="key=${{ format('${0}.tfstate', github.environment) }}" \
+            -backend-config="key=${{ format('${0}.tfstate', github.event.inputs.environment) }}" \
             -backend-config="region=ap-southeast-2"
 
       - name: Terraform Destroy
