@@ -9,7 +9,7 @@
     },
     {
       "name": "amount",
-      "type": "double"
+      "type": "string"
     },
     {
       "name": "customer_id",
