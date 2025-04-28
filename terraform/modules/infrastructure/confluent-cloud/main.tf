@@ -47,6 +47,12 @@ resource "confluent_role_binding" "this" {
   crn_pattern = confluent_kafka_cluster.this.rbac_crn
 }
 
+resource "confluent_role_binding" "data-steward" {
+  principal   = "User:${confluent_service_account.this.id}"
+  role_name   = "DataSteward"
+  crn_pattern = confluent_environment.this.resource_name
+}
+
 resource "confluent_api_key" "this" {
   display_name = "${var.environment}-cloud-cluster-admin-api-key"
   description  = "${var.environment}-CloudClusterAdmin API Key"
